@@ -1,0 +1,11 @@
+COPYING
+INSTALL
+LZO.pm
+LZO.xs
+Makefile.PL
+MANIFEST
+NEWS
+README
+configure
+typemap
+t/test.t

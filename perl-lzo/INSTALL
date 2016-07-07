@@ -1,0 +1,15 @@
+Installation
+============
+
+  Short Instructions
+  ------------------
+  1. Build and install Perl (5.004 or newer)
+  2. Build and install the LZO library (1.03 or newer)
+  3. Edit the file `Makefile.PL' if you've installed the LZO library
+       in an unusal place
+  4. Run "./configure"
+  5. Run "make"
+  6. Test the module by runnning "make test"
+  7. Optional: run "strip ./blib/arch/auto/Compress/LZO/LZO.so"
+  8. Run "make install" to install the module (when logged in as root)
+

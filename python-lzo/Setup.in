@@ -1,0 +1,14 @@
+# This file Setup is initially copied from Setup.in; once it exists it
+# will not be overwritten, so you can edit Setup to your heart's content.
+
+## Build module as shared library.
+*shared*
+
+lzomodule lzomodule.c \
+# *** Uncomment and edit to reflect where your LZO header files are:
+#	-I/usr/include/lzo \
+#	-I/usr/local/include \
+#	-I/usr/local/include/lzo \
+# *** Uncomment and edit to reflect where your LZO library is:
+#	-L/usr/local/lib \
+	-llzo

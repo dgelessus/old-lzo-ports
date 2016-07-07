@@ -1,0 +1,7 @@
+============================================================================
+User visible changes for Python-LZO
+============================================================================
+
+Changes in 1.00 (21 Aug 1998)
+  * first public release - requires LZO library v1.03 or newer
+

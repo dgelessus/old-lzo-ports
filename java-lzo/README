@@ -1,0 +1,156 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+
+
+                Java-LZO -- 100% pure Java LZO decompressors
+
+              Copyright (c) 1996-1999 Markus F.X.J. Oberhumer
+               http://wildsau.idv.uni-linz.ac.at/mfx/lzo.html
+
+
+What is LZO ?
+=============
+
+LZO is a portable lossless data compression library written in ANSI C.
+It offers pretty fast compression and *very* fast decompression.
+Decompression requires no memory.
+
+In addition there are slower compression levels achieving a quite
+competitive compression ratio while still decompressing at
+this very high speed.
+
+
+What is Java ?
+==============
+
+You're kidding, aren't you ? :-)
+
+
+What is Java-LZO ?
+====================
+
+Java-LZO implements 100% pure Java decompressors of the LZO
+compression algorithms.
+
+Currently only the LZO1X decompression algorithm is implemented.
+
+
+Portability ?
+=============
+
+I've tested Java-LZO sucessfully under JDK 1.02 and various 1.1x
+implementations.
+
+Search for the string "@JDK@" in the sources to enable some small
+extensions if you don't need compatibility with JDK 1.02.
+
+
+Where's the documentation ?
+===========================
+
+The API documentation for Java-LZO is in the `javadoc' directory -
+probably you will only need the Lzo1xDecompressor.decompress()
+function.
+
+Additionally you should read the docs and study the example
+programs that ship with the LZO library. Really.
+
+
+How fast is it ?
+================
+
+Obviously speed strongly depends on your Java virtual machine and
+the quality of your JIT compiler (if any), but also other things
+like cache, threads and garbage collection details matter.
+
+Here are some very rough timings on my AMD K2-450 with 128 MB RAM
+when decompressing the file obj2 from the Calgary Corpus suite:
+
+  LZO1X decompression in C                           ~58 MB/sec
+  LZO1X decompression in C (safe decompressor)       ~52 MB/sec
+
+  LZO1X decompression, Linux, JDK 1.1.7v2, TYA 1.5   ~12 MB/sec
+  LZO1X decompression, Linux, JDK 1.1.7v2, no JIT    ~ 1.4 MB/sec
+
+So with the TYA JIT compiler I get about 25% of the speed of
+the C implementation - not too bad.
+
+Finally beware: this is an artificial test setting, and your
+mileage *will* vary.
+
+And yes - LZO decompression is that fast :-)
+
+
+How can I run my own benchmarks ?
+=================================
+
+Get the LZO 1.06 distribution and compile the `lpack' example program.
+
+Then compress your test file by using something like
+
+  `lpack -9 myfile myfile.lpack'
+
+To test your Java decompression speed call something like
+
+  `java lunpack -t -F -D100 myfile.lpack'
+
+  The above line will run 100 decompressions and print some
+  statistics afterwards. Use larger values on fast machines and/or
+  good JIT implementations to get more accurate results.
+  (I've used `-D1000' for my benchmarks above)
+
+Advanced users:
+
+  Note that lpack has an undocumented option `-b' to specify the
+  blocksize used for compression. You can use this to more accurately
+  simulate your expected compression scenario.
+
+
+What about JNI ?
+================
+
+The most efficient way to use the LZO library from Java would be
+to create bindings for the LZO DLL or shared library by using
+the Java Native Interface.
+
+Unfortunately (as opposed to what most vendors like to tell you)
+this has proven to be highly unportable with respect to all the
+virtual machines that are out there.
+
+Another drawback is that you cannot use JNI in applets.
+
+Maybe I'll look at this again once JDK 1.2 is widely available,
+i.e. when all major browsers support it. Hopefully the situation
+will be better then.
+
+
+Copyright
+=========
+
+The LZO and Java-LZO algorithms and implementations are
+Copyright (C) 1996, 1997, 1998, 1999
+Markus Franz Xaver Johannes Oberhumer <markus.oberhumer@jk.uni-linz.ac.at>
+
+The LZO and Java-LZO algorithms and implementations are distributed under
+the terms of the GNU General Public License (GPL).  See the file COPYING.
+
+
+Trademarks
+==========
+
+Java is a trademark or registered trademark of Sun Microsystems, Inc.
+All other trademarks and product names are the property of their
+respective owners.
+
+
+
+
+-----BEGIN PGP SIGNATURE-----
+Version: 2.6.3ia
+Charset: noconv
+
+iQCVAwUBOETw2210fyLu8beJAQEK2QP/UoEIEMysgAX1Pe3EPCj1hMTYCW0nm97m
+0ko7alA2LO1zbfpocrNxjQEDIaIx6hozL2Eq+BOJkV5sAomxa1DprchJ4qIl/szf
+SKoEHNyzX/CIB+7RZzo59HtrND+ny24dtZern8kxsD0Ur07OtBltbNhRX5VaC9eN
+1Il8ZRgYYng=
+=zuj2
+-----END PGP SIGNATURE-----
